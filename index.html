@@ -1,166 +1,92 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pembayaran QRIS</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>QRIS Pembayaran</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f9f9f9;
-      text-align: center;
-      padding: 20px;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f1f3f6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
     }
 
-    .container {
-      background: #fff;
-      border-radius: 10px;
+    .qris-container {
+      background: #ffffff;
       padding: 30px;
-      max-width: 400px;
-      margin: auto;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      width: 320px;
     }
 
-    img.qris {
-      width: 250px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: 0.3s;
+    .qris-container h2 {
+      margin-bottom: 10px;
+      color: #222;
     }
 
-    img.qris:hover {
-      transform: scale(1.05);
+    #qris {
+      margin: 20px auto;
+      width: 256px;
+      height: 256px;
     }
 
     .download-btn {
-      margin-top: 10px;
       display: inline-block;
-      padding: 8px 15px;
-      background: #28a745;
+      background-color: #28a745;
       color: white;
-      border-radius: 5px;
       text-decoration: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      margin-top: 15px;
+      transition: background-color 0.3s ease;
     }
 
-    .payment-method {
+    .download-btn:hover {
+      background-color: #218838;
+    }
+
+    .footer {
+      font-size: 12px;
+      color: #888;
       margin-top: 20px;
-      text-align: left;
     }
-
-    .payment-item {
-      margin-bottom: 15px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .payment-item span {
-      font-weight: bold;
-    }
-
-    .copy-btn {
-      background: #007bff;
-      color: white;
-      border: none;
-      padding: 5px 10px;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-
-    .copy-btn:hover {
-      background: #0056b3;
-    }
-
-    /* Modal */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 999;
-      padding-top: 100px;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.8);
-    }
-
-    .modal-content {
-      margin: auto;
-      display: block;
-      max-width: 90%;
-    }
-
-    .close {
-      position: absolute;
-      top: 60px;
-      right: 50px;
-      color: #fff;
-      font-size: 35px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
   </style>
 </head>
 <body>
-
-<div class="container">
-  <h2>Pembayaran via QRIS</h2>
-  <img src="https://files.catbox.moe/dn6h7z.jpeg" alt="QRIS" class="qris" id="qrisImage">
-  <br>
-  <a href="https://files.catbox.moe/dn6h7z.jpeg" download class="download-btn">📥 Download QRIS</a>
-
-  <div class="payment-method">
-    <div class="payment-item">
-      <span>DANA:</span> <span id="dana">081915460443</span>
-      <button class="copy-btn" onclick="copyText('dana')">Salin</button>
-    </div>
-    <div class="payment-item">
-      <span>OVO:</span> <span id="ovo">087859803568</span>
-      <button class="copy-btn" onclick="copyText('ovo')">Salin</button>
-    </div>
-    <div class="payment-item">
-      <span>GOPAY:</span> <span id="gopay">087859803568</span>
-      <button class="copy-btn" onclick="copyText('gopay')">Salin</button>
-    </div>
+  <div class="qris-container">
+    <h2>Bayar dengan QRIS</h2>
+    <div id="qris"></div>
+    <a id="downloadLink" class="download-btn" href="#" download="QRIS-Pembayaran.png">Unduh QR</a>
+    <div class="footer">Tunjukkan QR ini ke kasir atau scan untuk membayar.</div>
   </div>
-</div>
 
-<!-- Modal Zoom QRIS -->
-<div id="qrModal" class="modal">
-  <span class="close" onclick="closeModal()">&times;</span>
-  <img class="modal-content" id="modalImage">
-</div>
+  <!-- QRCode.js Library -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
+  <script>
+    const qrisData = "https://qris.example.com/pembayaran/123456"; // Ganti dengan data/link QRIS kamu
 
-<script>
-  function copyText(id) {
-    const text = document.getElementById(id).textContent;
-    navigator.clipboard.writeText(text).then(() => {
-      alert("Nomor " + id.toUpperCase() + " berhasil disalin!");
+    const qrcode = new QRCode(document.getElementById("qris"), {
+      text: qrisData,
+      width: 256,
+      height: 256,
+      colorDark: "#000000",
+      colorLight: "#ffffff",
+      correctLevel: QRCode.CorrectLevel.H
     });
-  }
 
-  // Modal zoom image
-  const modal = document.getElementById("qrModal");
-  const modalImg = document.getElementById("modalImage");
-  const qrisImage = document.getElementById("qrisImage");
-
-  qrisImage.onclick = function() {
-    modal.style.display = "block";
-    modalImg.src = this.src;
-  }
-
-  function closeModal() {
-    modal.style.display = "none";
-  }
-
-  window.onclick = function(event) {
-    if (event.target == modal) {
-      closeModal();
-    }
-  }
-</script>
-
+    // Tunggu hingga QR selesai dirender, lalu ubah jadi PNG untuk diunduh
+    setTimeout(() => {
+      const qrCanvas = document.querySelector("#qris canvas");
+      const downloadLink = document.getElementById("downloadLink");
+      const dataURL = qrCanvas.toDataURL("image/png");
+      downloadLink.href = dataURL;
+    }, 500);
+  </script>
 </body>
 </html>
