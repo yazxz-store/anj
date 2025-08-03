@@ -1,92 +1,186 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>QRIS Pembayaran</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pembayaran</title>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #f1f3f6;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
       margin: 0;
-    }
-
-    .qris-container {
-      background: #ffffff;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      padding: 0;
       text-align: center;
-      width: 320px;
     }
-
-    .qris-container h2 {
-      margin-bottom: 10px;
-      color: #222;
+    .container {
+      max-width: 500px;
+      margin: 50px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
-
-    #qris {
-      margin: 20px auto;
-      width: 256px;
-      height: 256px;
+    img.qris {
+      width: 200px;
+      height: auto;
+      cursor: pointer;
+      transition: 0.3s;
+      border-radius: 10px;
     }
-
-    .download-btn {
-      display: inline-block;
+    img.qris:hover {
+      transform: scale(1.05);
+    }
+    .payment-info {
+      margin-top: 20px;
+      text-align: left;
+    }
+    .payment-method {
+      margin-bottom: 15px;
+    }
+    .payment-method h3 {
+      margin-bottom: 5px;
+      color: #333;
+    }
+    .payment-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #f0f0f0;
+      padding: 10px;
+      border-radius: 6px;
+    }
+    .payment-box span {
+      font-weight: bold;
+    }
+    .copy-btn {
+      padding: 6px 12px;
       background-color: #28a745;
       color: white;
-      text-decoration: none;
-      padding: 12px 20px;
-      border-radius: 8px;
-      font-weight: bold;
-      margin-top: 15px;
-      transition: background-color 0.3s ease;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 12px;
     }
-
-    .download-btn:hover {
+    .copy-btn:hover {
       background-color: #218838;
     }
+    .download-btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .download-btn:hover {
+      background-color: #0056b3;
+    }
 
-    .footer {
-      font-size: 12px;
-      color: #888;
-      margin-top: 20px;
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      padding-top: 60px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.7);
+    }
+    .modal-content {
+      margin: auto;
+      display: block;
+      max-width: 90%;
+      max-height: 80%;
+    }
+    .close {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      color: white;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
-  <div class="qris-container">
-    <h2>Bayar dengan QRIS</h2>
-    <div id="qris"></div>
-    <a id="downloadLink" class="download-btn" href="#" download="QRIS-Pembayaran.png">Unduh QR</a>
-    <div class="footer">Tunjukkan QR ini ke kasir atau scan untuk membayar.</div>
+
+<div class="container">
+  <h2>Pembayaran via QRIS</h2>
+  <img src="https://files.catbox.moe/dn6h7z.jpeg" alt="QRIS" class="qris" id="qrisImg">
+  <br>
+  <a href="https://files.catbox.moe/dn6h7z.jpeg" download="QRIS.jpeg" class="download-btn">Unduh QRIS</a>
+
+  <div class="payment-info">
+    <div class="payment-method">
+      <h3>DANA</h3>
+      <div class="payment-box">
+        <span id="dana">081915460443</span>
+        <button class="copy-btn" onclick="copyToClipboard('dana')">Salin</button>
+      </div>
+    </div>
+
+    <div class="payment-method">
+      <h3>OVO</h3>
+      <div class="payment-box">
+        <span id="ovo">087859803568</span>
+        <button class="copy-btn" onclick="copyToClipboard('ovo')">Salin</button>
+      </div>
+    </div>
+
+    <div class="payment-method">
+      <h3>GOPAY</h3>
+      <div class="payment-box">
+        <span id="gopay">087859803568</span>
+        <button class="copy-btn" onclick="copyToClipboard('gopay')">Salin</button>
+      </div>
+    </div>
   </div>
+</div>
 
-  <!-- QRCode.js Library -->
-  <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
-  <script>
-    const qrisData = "https://qris.example.com/pembayaran/123456"; // Ganti dengan data/link QRIS kamu
+<!-- Modal -->
+<div id="qrisModal" class="modal">
+  <span class="close" id="closeModal">&times;</span>
+  <img class="modal-content" id="modalImage">
+</div>
 
-    const qrcode = new QRCode(document.getElementById("qris"), {
-      text: qrisData,
-      width: 256,
-      height: 256,
-      colorDark: "#000000",
-      colorLight: "#ffffff",
-      correctLevel: QRCode.CorrectLevel.H
+<script>
+  function copyToClipboard(id) {
+    const text = document.getElementById(id).textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      alert("Nomor berhasil disalin: " + text);
+    }).catch(err => {
+      alert("Gagal menyalin");
     });
+  }
 
-    // Tunggu hingga QR selesai dirender, lalu ubah jadi PNG untuk diunduh
-    setTimeout(() => {
-      const qrCanvas = document.querySelector("#qris canvas");
-      const downloadLink = document.getElementById("downloadLink");
-      const dataURL = qrCanvas.toDataURL("image/png");
-      downloadLink.href = dataURL;
-    }, 500);
-  </script>
+  const modal = document.getElementById("qrisModal");
+  const img = document.getElementById("qrisImg");
+  const modalImg = document.getElementById("modalImage");
+  const closeModal = document.getElementById("closeModal");
+
+  img.onclick = function() {
+    modal.style.display = "block";
+    modalImg.src = this.src;
+  }
+
+  closeModal.onclick = function() {
+    modal.style.display = "none";
+  }
+
+  window.onclick = function(event) {
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  }
+</script>
+
 </body>
 </html>
