@@ -2,174 +2,256 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Xyra Official</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pembayaran - Yazxz Hosting</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet"/>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
     body {
-      font-family: 'Segoe UI', sans-serif;
       margin: 0;
-      background: linear-gradient(120deg, #e0eafc, #cfdef3);
-      color: #333;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: #f8f9fa;
     }
 
     header {
-      background: linear-gradient(135deg, #6c5ce7, #0984e3);
-      color: white;
-      padding: 50px 20px;
-      text-align: center;
+      background: rgba(30, 30, 44, 0.9);
+      padding: 1rem 5%;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     }
 
-    header h1 {
-      font-size: 2.5rem;
-      margin: 0;
-    }
-
-    header p {
-      margin-top: 10px;
-      font-size: 1.2rem;
-      color: #dfe6ff;
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #4361ee, #3f37c9);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
 
     .container {
-      display: flex;
-      flex-direction: column;
-      gap: 25px;
-      padding: 40px 20px;
-      max-width: 600px;
-      margin: auto;
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: rgba(30, 41, 59, 0.8);
+      border-radius: 16px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
     }
 
-    .card {
-      background: rgba(255, 255, 255, 0.25);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      border-radius: 20px;
-      padding: 25px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    h1 {
       text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      font-family: 'Montserrat', sans-serif;
     }
 
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    .neon-text {
+      color: #4cc9f0;
+      text-shadow:
+        0 0 5px #4cc9f0,
+        0 0 10px #4cc9f0,
+        0 0 20px #4cc9f0,
+        0 0 40px #4895ef;
     }
 
-    .card h3 {
-      margin: 10px 0 5px;
-      font-size: 1.4rem;
-      color: #2d3436;
+    .flicker {
+      animation: flicker 2s infinite;
     }
 
-    .card .icon {
-      font-size: 42px;
-      color: #6c5ce7;
-      margin-bottom: 10px;
+    @keyframes flicker {
+      0%, 100% { opacity: 1; }
+      45% { opacity: 0.7; }
+      50% { opacity: 1; }
+      55% { opacity: 0.5; }
+      60% { opacity: 1; }
     }
 
-    .price {
-      font-weight: bold;
-      color: #00b894;
-      margin: 12px 0 20px;
-      font-size: 1.1rem;
+    .qris {
+      text-align: center;
+      margin-bottom: 2rem;
     }
 
-    .btn {
-      background: linear-gradient(to right, #00cec9, #0984e3);
-      color: white;
-      text-decoration: none;
-      padding: 10px 22px;
+    .qris img {
+      max-width: 300px;
+      width: 100%;
+      border-radius: 12px;
+    }
+
+    .neon-border {
+      border: 2px solid #4895ef;
+      box-shadow:
+        0 0 5px #4895ef,
+        0 0 15px #4895ef,
+        0 0 30px #4895ef;
+    }
+
+    .payment-methods {
+      margin-bottom: 2rem;
+    }
+
+    .method {
+      background: rgba(15, 23, 42, 0.6);
+      padding: 1rem 1.5rem;
+      margin-bottom: 1rem;
       border-radius: 10px;
-      font-weight: bold;
-      transition: background 0.2s ease;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
     }
 
-    .btn:hover {
-      background: linear-gradient(to right, #00b894, #6c5ce7);
+    .method-info {
+      flex: 1 1 70%;
     }
 
-    .contact-card {
-      background: white;
-      margin: 30px auto 60px;
-      max-width: 500px;
-      padding: 25px;
-      border-radius: 15px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-      text-align: center;
+    .method-info strong {
+      display: block;
+      font-size: 1.1rem;
+      color: #4cc9f0;
+      margin-bottom: 4px;
     }
 
-    .contact-card h2 {
-      margin-top: 0;
-      color: #2d3436;
-    }
-
-    .contact-card p {
-      font-size: 1rem;
-      color: #555;
-    }
-
-    .contact-card a {
-      display: inline-block;
-      margin-top: 15px;
-      text-decoration: none;
-      background: #25D366;
+    .copy-btn {
+      padding: 8px 16px;
+      background: linear-gradient(135deg, #4361ee, #3f37c9);
       color: white;
-      padding: 10px 20px;
+      border: none;
       border-radius: 8px;
-      font-weight: bold;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
     }
 
-    .contact-card a:hover {
-      background: #1ebe5b;
+    .copy-btn.neon {
+      box-shadow:
+        0 0 5px #4cc9f0,
+        0 0 10px #4895ef;
+    }
+
+    .copy-btn:hover {
+      box-shadow: 0 8px 20px rgba(67, 97, 238, 0.5);
+      transform: translateY(-2px);
+    }
+
+    .cta-button {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 14px;
+      background: linear-gradient(135deg, #4361ee, #3f37c9);
+      color: white;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .cta-button:hover {
+      box-shadow: 0 10px 25px rgba(67, 97, 238, 0.5);
+      transform: translateY(-3px);
+    }
+
+    footer {
+      text-align: center;
+      margin: 2rem 0;
+      color: #94a3b8;
+      font-size: 0.9rem;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-weight: 600;
+      display: none;
+      z-index: 1000;
+    }
+
+    .toast.neon {
+      background: #4cc9f0;
+      color: #0f172a;
+      box-shadow:
+        0 0 10px #4cc9f0,
+        0 0 20px #4895ef;
     }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>Xyra Official</h1>
-    <p>Murah • Aman • Terpercaya</p>
+    <div class="logo">
+      <i class="fas fa-code"></i>
+      YazxzHosting
+    </div>
   </header>
 
-  <div class="container" id="product-list"></div>
+  <div class="container">
+    <h1 class="neon-text flicker">Pembayaran</h1>
 
-  <div class="contact-card">
-    <h2>Kontak Admin</h2>
-    <p>Jika ada pertanyaan atau kendala, silakan hubungi admin melalui WhatsApp.</p>
-    <a target="_blank" href="https://wa.me/6283140662333?text=Halo%20admin,%20saya%20mau%20bertanya%20tentang%20layanan%20VPS.">Hubungi Admin</a>
+    <div class="qris">
+      <img src="https://files.catbox.moe/dn6h7z.jpeg" alt="QRIS YAZXZ" class="neon-border" />
+      <p style="margin-top: 0.8rem;">Scan QRIS di atas untuk membayar</p>
+    </div>
+
+    <div class="payment-methods">
+      <div class="method">
+        <div class="method-info">
+          <strong>DANA</strong>
+          <span id="dana">081952404174</span>
+        </div>
+        <button class="copy-btn neon" onclick="copyToClipboard('dana')">Salin</button>
+      </div>
+
+      <div class="method">
+        <div class="method-info">
+          <strong>OVO</strong>
+          <span id="ovo">087859803568</span>
+        </div>
+        <button class="copy-btn neon" onclick="copyToClipboard('ovo')">Salin</button>
+      </div>
+
+      <div class="method">
+        <div class="method-info">
+          <strong>GOPAY</strong>
+          <span id="gopay">087859803568</span>
+        </div>
+        <button class="copy-btn neon" onclick="copyToClipboard('gopay')">Salin</button>
+      </div>
+    </div>
+
+    <a href="https://wa.me/6281952404174" class="cta-button">
+      <i class="fab fa-whatsapp"></i> Konfirmasi Pembayaran
+    </a>
   </div>
 
+  <footer>
+    &copy; 2025 Yazxz Hosting. Website Payment.
+  </footer>
+
+  <div class="toast neon" id="toast">Disalin ke clipboard!</div>
+
   <script>
-    const waNumber = "6283140662333";
-
-    const products = [
-      { name: "VPS RAM 1GB CORE 1", price: "Rp 20.000 / bulan", msg: "Halo kak, saya ingin order VPS RAM 1GB CORE 1" },
-      { name: "VPS RAM 2GB CORE 1", price: "Rp 25.000 / bulan", msg: "Halo kak, saya ingin order VPS RAM 2GB CORE 1" },
-      { name: "VPS RAM 2GB CORE 2", price: "Rp 30.000 / bulan", msg: "Halo kak, saya ingin order VPS RAM 2GB CORE 2" },
-      { name: "VPS RAM 4GB CORE 2", price: "Rp 40.000 / bulan", msg: "Halo kak, saya ingin order VPS RAM 4GB CORE 2" },
-      { name: "VPS RAM 8GB CORE 2", price: "Rp 45.000 / bulan", msg: "Halo kak, saya ingin order VPS RAM 8GB CORE 2" },
-      { name: "VPS RAM 8GB CORE 4", price: "Rp 50.000 / bulan", msg: "Halo kak, saya ingin order VPS RAM 8GB CORE 4" },
-      { name: "VPS RAM 16GB CORE 4", price: "Rp 70.000 / bulan", msg: "Halo kak, saya ingin order VPS RAM 16GB CORE 4" }
-    ];
-
-    const container = document.getElementById("product-list");
-
-    products.forEach((item) => {
-      const card = document.createElement("div");
-      card.className = "card";
-      card.innerHTML = `
-        <div class="icon">💻</div>
-        <h3>${item.name}</h3>
-        <p class="price">${item.price}</p>
-        <a class="btn" target="_blank" href="https://wa.me/${waNumber}?text=${encodeURIComponent(item.msg)}">Beli Sekarang</a>
-      `;
-      container.appendChild(card);
-    });
+    function copyToClipboard(id) {
+      const text = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const toast = document.getElementById('toast');
+        toast.style.display = 'block';
+        setTimeout(() => {
+          toast.style.display = 'none';
+        }, 2000);
+      });
+    }
   </script>
 
 </body>
