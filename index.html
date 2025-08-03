@@ -1,186 +1,176 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pembayaran</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Xyra Official</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f7f7f7;
-      margin: 0;
-      padding: 0;
-      text-align: center;
-    }
-    .container {
-      max-width: 500px;
-      margin: 50px auto;
-      background: white;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-    img.qris {
-      width: 200px;
-      height: auto;
-      cursor: pointer;
-      transition: 0.3s;
-      border-radius: 10px;
-    }
-    img.qris:hover {
-      transform: scale(1.05);
-    }
-    .payment-info {
-      margin-top: 20px;
-      text-align: left;
-    }
-    .payment-method {
-      margin-bottom: 15px;
-    }
-    .payment-method h3 {
-      margin-bottom: 5px;
-      color: #333;
-    }
-    .payment-box {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: #f0f0f0;
-      padding: 10px;
-      border-radius: 6px;
-    }
-    .payment-box span {
-      font-weight: bold;
-    }
-    .copy-btn {
-      padding: 6px 12px;
-      background-color: #28a745;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 12px;
-    }
-    .copy-btn:hover {
-      background-color: #218838;
-    }
-    .download-btn {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 10px 20px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background 0.3s;
-    }
-    .download-btn:hover {
-      background-color: #0056b3;
+    * {
+      box-sizing: border-box;
     }
 
-    /* Modal Styles */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 999;
-      padding-top: 60px;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.7);
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: linear-gradient(120deg, #e0eafc, #cfdef3);
+      color: #333;
     }
-    .modal-content {
-      margin: auto;
-      display: block;
-      max-width: 90%;
-      max-height: 80%;
-    }
-    .close {
-      position: absolute;
-      top: 30px;
-      right: 40px;
+
+    header {
+      background: linear-gradient(135deg, #6c5ce7, #0984e3);
       color: white;
-      font-size: 40px;
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin: 0;
+    }
+
+    header p {
+      margin-top: 10px;
+      font-size: 1.2rem;
+      color: #dfe6ff;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      padding: 40px 20px;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 20px;
+      padding: 25px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      text-align: center;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .card h3 {
+      margin: 10px 0 5px;
+      font-size: 1.4rem;
+      color: #2d3436;
+    }
+
+    .card .icon {
+      font-size: 42px;
+      color: #6c5ce7;
+      margin-bottom: 10px;
+    }
+
+    .price {
       font-weight: bold;
-      cursor: pointer;
+      color: #00b894;
+      margin: 12px 0 20px;
+      font-size: 1.1rem;
+    }
+
+    .btn {
+      background: linear-gradient(to right, #00cec9, #0984e3);
+      color: white;
+      text-decoration: none;
+      padding: 10px 22px;
+      border-radius: 10px;
+      font-weight: bold;
+      transition: background 0.2s ease;
+    }
+
+    .btn:hover {
+      background: linear-gradient(to right, #00b894, #6c5ce7);
+    }
+
+    .contact-card {
+      background: white;
+      margin: 30px auto 60px;
+      max-width: 500px;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      text-align: center;
+    }
+
+    .contact-card h2 {
+      margin-top: 0;
+      color: #2d3436;
+    }
+
+    .contact-card p {
+      font-size: 1rem;
+      color: #555;
+    }
+
+    .contact-card a {
+      display: inline-block;
+      margin-top: 15px;
+      text-decoration: none;
+      background: #25D366;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    .contact-card a:hover {
+      background: #1ebe5b;
     }
   </style>
 </head>
 <body>
 
-<div class="container">
-  <h2>Pembayaran via QRIS</h2>
-  <img src="https://files.catbox.moe/dn6h7z.jpeg" alt="QRIS" class="qris" id="qrisImg">
-  <br>
-  <a href="https://files.catbox.moe/dn6h7z.jpeg" download="QRIS.jpeg" class="download-btn">Unduh QRIS</a>
+  <header>
+    <h1>Xyra Official</h1>
+    <p>Murah • Aman • Terpercaya</p>
+  </header>
 
-  <div class="payment-info">
-    <div class="payment-method">
-      <h3>DANA</h3>
-      <div class="payment-box">
-        <span id="dana">081915460443</span>
-        <button class="copy-btn" onclick="copyToClipboard('dana')">Salin</button>
-      </div>
-    </div>
+  <div class="container" id="product-list"></div>
 
-    <div class="payment-method">
-      <h3>OVO</h3>
-      <div class="payment-box">
-        <span id="ovo">087859803568</span>
-        <button class="copy-btn" onclick="copyToClipboard('ovo')">Salin</button>
-      </div>
-    </div>
-
-    <div class="payment-method">
-      <h3>GOPAY</h3>
-      <div class="payment-box">
-        <span id="gopay">087859803568</span>
-        <button class="copy-btn" onclick="copyToClipboard('gopay')">Salin</button>
-      </div>
-    </div>
+  <div class="contact-card">
+    <h2>Kontak Admin</h2>
+    <p>Jika ada pertanyaan atau kendala, silakan hubungi admin melalui WhatsApp.</p>
+    <a target="_blank" href="https://wa.me/6283140662333?text=Halo%20admin,%20saya%20mau%20bertanya%20tentang%20layanan%20VPS.">Hubungi Admin</a>
   </div>
-</div>
 
-<!-- Modal -->
-<div id="qrisModal" class="modal">
-  <span class="close" id="closeModal">&times;</span>
-  <img class="modal-content" id="modalImage">
-</div>
+  <script>
+    const waNumber = "6283140662333";
 
-<script>
-  function copyToClipboard(id) {
-    const text = document.getElementById(id).textContent;
-    navigator.clipboard.writeText(text).then(() => {
-      alert("Nomor berhasil disalin: " + text);
-    }).catch(err => {
-      alert("Gagal menyalin");
+    const products = [
+      { name: "VPS RAM 1GB CORE 1", price: "Rp 20.000 / bulan", msg: "Halo kak, saya ingin order VPS RAM 1GB CORE 1" },
+      { name: "VPS RAM 2GB CORE 1", price: "Rp 25.000 / bulan", msg: "Halo kak, saya ingin order VPS RAM 2GB CORE 1" },
+      { name: "VPS RAM 2GB CORE 2", price: "Rp 30.000 / bulan", msg: "Halo kak, saya ingin order VPS RAM 2GB CORE 2" },
+      { name: "VPS RAM 4GB CORE 2", price: "Rp 40.000 / bulan", msg: "Halo kak, saya ingin order VPS RAM 4GB CORE 2" },
+      { name: "VPS RAM 8GB CORE 2", price: "Rp 45.000 / bulan", msg: "Halo kak, saya ingin order VPS RAM 8GB CORE 2" },
+      { name: "VPS RAM 8GB CORE 4", price: "Rp 50.000 / bulan", msg: "Halo kak, saya ingin order VPS RAM 8GB CORE 4" },
+      { name: "VPS RAM 16GB CORE 4", price: "Rp 70.000 / bulan", msg: "Halo kak, saya ingin order VPS RAM 16GB CORE 4" }
+    ];
+
+    const container = document.getElementById("product-list");
+
+    products.forEach((item) => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <div class="icon">💻</div>
+        <h3>${item.name}</h3>
+        <p class="price">${item.price}</p>
+        <a class="btn" target="_blank" href="https://wa.me/${waNumber}?text=${encodeURIComponent(item.msg)}">Beli Sekarang</a>
+      `;
+      container.appendChild(card);
     });
-  }
-
-  const modal = document.getElementById("qrisModal");
-  const img = document.getElementById("qrisImg");
-  const modalImg = document.getElementById("modalImage");
-  const closeModal = document.getElementById("closeModal");
-
-  img.onclick = function() {
-    modal.style.display = "block";
-    modalImg.src = this.src;
-  }
-
-  closeModal.onclick = function() {
-    modal.style.display = "none";
-  }
-
-  window.onclick = function(event) {
-    if (event.target === modal) {
-      modal.style.display = "none";
-    }
-  }
-</script>
+  </script>
 
 </body>
 </html>
