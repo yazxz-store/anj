@@ -2,81 +2,91 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Profil Bisnis - YazxzHosting</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YazxzHosting Profile</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
-      padding: 0;
-      background: #f4f4f4;
-      color: #333;
+      font-family: sans-serif;
+      background: url('https://source.unsplash.com/1600x900/?city,blur') no-repeat center/cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
     }
-    header {
-      background: #2c3e50;
-      color: white;
-      padding: 20px 0;
+    .card {
+      background: rgba(0,0,0,0.6);
+      border-radius: 20px;
+      padding: 20px;
       text-align: center;
+      color: #fff;
+      max-width: 400px;
+      width: 90%;
     }
-    .container {
-      padding: 30px;
-      max-width: 800px;
+    .logo {
+      width: 100px;
+      height: 100px;
       margin: auto;
-      background: white;
-      margin-top: 20px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 50%;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
     }
-    h2 {
-      color: #2c3e50;
+    .logo img {
+      width: 60px;
     }
-    footer {
-      background: #2c3e50;
-      color: white;
-      text-align: center;
-      padding: 15px 0;
-      margin-top: 30px;
+    .title {
+      font-size: 1.5em;
+      font-weight: bold;
+      margin: 10px 0;
     }
+    .desc {
+      font-size: 0.9em;
+      margin-bottom: 20px;
+    }
+    .button-grid {
+      display: grid;
+      gap: 10px;
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .btn {
+      padding: 12px;
+      border-radius: 10px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      display: block;
+    }
+    .btn.green { background: #2ecc71; }
+    .btn.red { background: #e74c3c; }
+    .btn.blue { background: #3498db; }
+    .btn.orange { background: #f39c12; }
+    .btn.purple { background: #9b59b6; }
+    .btn.pink { background: #e91e63; }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>YazxzHosting</h1>
-  <p>Layanan Hosting Terbaik & Terjangkau</p>
-</header>
-
-<div class="container">
-  <h2>Profil Perusahaan</h2>
-  <p><strong>Nama Usaha:</strong> YazxzHosting</p>
-  <p><strong>Tahun Berdiri:</strong> 2023</p>
-  <p><strong>Bidang:</strong> Web Hosting, Domain, dan Server Management</p>
-
-  <h2>Tentang Kami</h2>
-  <p>
-    YazxzHosting adalah penyedia layanan hosting terpercaya yang berfokus pada kualitas, stabilitas, dan harga yang terjangkau. Kami melayani ribuan pelanggan dari seluruh Indonesia dan terus berkembang dengan layanan support 24/7 dan teknologi terbaru.
-  </p>
-
-  <h2>Visi</h2>
-  <p>
-    Menjadi penyedia hosting terbaik di Asia Tenggara dengan pelayanan premium dan harga yang kompetitif.
-  </p>
-
-  <h2>Misi</h2>
-  <ul>
-    <li>Menyediakan layanan hosting yang cepat dan aman.</li>
-    <li>Memberikan support teknis 24/7.</li>
-    <li>Membantu UMKM dan startup berkembang secara digital.</li>
-  </ul>
-
-  <h2>Kontak</h2>
-  <p><strong>Email:</strong> support@yazxzhosting.com</p>
-  <p><strong>WhatsApp:</strong> +62 812-3456-7890</p>
-  <p><strong>Alamat:</strong> Jl. Teknologi No. 123, Jakarta</p>
+<div class="card">
+  <div class="logo">
+    <img src="https://via.placeholder.com/60x60.png?text=Y" alt="Logo">
+  </div>
+  <div class="title">© YazxzHosting</div>
+  <div class="desc">Developer Script & Menyediakan Layanan Hosting Lengkap</div>
+  <div class="button-grid">
+    <a href="#" class="btn green">Telegram</a>
+    <a href="#" class="btn blue">YouTube</a>
+    <a href="#" class="btn.green">Tiktok</a>
+    <a href="#" class="btn blue">Testimoni</a>
+    <a href="#" class="btn red">Script Free</a>
+    <a href="#" class="btn orange">Pembayaran / QRIS</a>
+    <a href="#" class="btn purple">List Panel</a>
+    <a href="#" class="btn pink">Suntik Sosmed</a>
+    <a href="#" class="btn blue" style="grid-column: span 2;">Reseller / Admin Panel</a>
+  </div>
 </div>
-
-<footer>
-  <p>&copy; 2025 YazxzHosting. All rights reserved.</p>
-</footer>
 
 </body>
 </html>
